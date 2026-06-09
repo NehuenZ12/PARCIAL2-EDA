@@ -3,12 +3,12 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 
-public class Grafo {
+public class GrafoClanes {
 
     private HashMap<String, Clan> clanes;
     private HashMap<String, LinkedList<String>> alianzas;
 
-    public Grafo() {
+    public GrafoClanes() {
 
         clanes = new HashMap<>();
         alianzas = new HashMap<>();
