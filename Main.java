@@ -27,7 +27,7 @@ public class Main {
             switch (opcion) {
 
                 case 1:
-                    
+
                     String nombre1;
                     System.out.print("Nombre clan 1: ");
                     nombre1 = teclado.nextLine();
@@ -38,34 +38,35 @@ public class Main {
                     System.out.print("Cantidad miembros clan 1: ");
                     int miembros1 = teclado.nextInt();
                     teclado.nextLine();
-            
-                    if(grafo.clanes.isEmpty()){
 
-                        grafo.registrarClanSiNoExiste(
+                    grafo.registrarClanSiNoExiste(
                             nombre1,
                             lider1,
                             miembros1);
-                        System.out.println("Clan agregado correctamente");
+                    System.out.println("Clan agregado correctamente");
 
-                    }else{
-                        System.out.println("Elija un clan de los disponibles:");
+                    if (grafo.clanes.size() > 1) {
 
-                        for(String c : grafo.clanes.keySet()){
-                            System.out.println(c);
+                        for (String c : grafo.clanes.keySet()) {
+                            if (!c.equals(nombre1)) {
+                                System.out.println(c);
+                            }
+                        }
+                        System.out.print("Agregue el nombre del clan para aliarse: ");
+                        String nombre2 = teclado.nextLine();
+
+                        if (grafo.existeClan(nombre2)) {
+                            grafo.agregarAlianza(nombre1, nombre2);
+                            System.out.println("Alianza registrada con éxito entre " + nombre1 + " y " + nombre2);
+                        } else {
+                            System.out.println("El clan ingresado no existe. Quedará sin alianzas por ahora.");
                         }
 
-                        //¡¡¡¡¡¡¡¡IMPORTANTE!!!!!!!! Desde aca para abajo creo que da problemas, hay que hacer que concreten alianza los clanes
+                    } else {
 
-                        System.out.println("Agrege el nombre del clan para aliarse:");
-                        String nombre2 = teclado.nextLine();
-                        teclado.nextLine();
-
-                        grafo.agregarAlianza(
-                                nombre1,
-                                nombre2);
-
-                        System.out.println("Alianza registrada");
+                        System.out.println("Como es el primer y único clan en el juego, aún no puede formar alianzas.");
                     }
+
                     break;
 
                 case 2:
@@ -81,13 +82,13 @@ public class Main {
 
                         grafo.agregarAlianza(clanA, clanB);
 
-                    System.out.println(
-                        "Alianza creada");
+                        System.out.println(
+                                "Alianza creada");
 
                     } else {
 
                         System.out.println(
-                            "Uno o ambos clanes no existen");
+                                "Uno o ambos clanes no existen");
 
                     }
 
@@ -111,7 +112,7 @@ public class Main {
                     } else {
 
                         System.out.println(
-                            "Uno o ambos clanes no existen");
+                                "Uno o ambos clanes no existen");
 
                     }
 
@@ -120,10 +121,9 @@ public class Main {
                 case 4:
 
                     System.out.print(
-                        "Nombre del clan: ");
+                            "Nombre del clan: ");
 
-                    String clan =
-                            teclado.nextLine();
+                    String clan = teclado.nextLine();
 
                     if (grafo.existeClan(clan)) {
 
