@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class GrafoClanes {
 
-    private HashMap<String, Clan> clanes;
-    private HashMap<String, LinkedList<String>> alianzas;
+    public HashMap<String, Clan> clanes;
+    public HashMap<String, LinkedList<String>> alianzas;
 
     public GrafoClanes() {
 

@@ -27,9 +27,10 @@ public class Main {
             switch (opcion) {
 
                 case 1:
-
+                    
+                    String nombre1;
                     System.out.print("Nombre clan 1: ");
-                    String nombre1 = teclado.nextLine();
+                    nombre1 = teclado.nextLine();
 
                     System.out.print("Lider clan 1: ");
                     String lider1 = teclado.nextLine();
@@ -37,33 +38,34 @@ public class Main {
                     System.out.print("Cantidad miembros clan 1: ");
                     int miembros1 = teclado.nextInt();
                     teclado.nextLine();
+            
+                    if(grafo.clanes.isEmpty()){
 
-                    System.out.print("Nombre clan 2: ");
-                    String nombre2 = teclado.nextLine();
-
-                    System.out.print("Lider clan 2: ");
-                    String lider2 = teclado.nextLine();
-
-                    System.out.print("Cantidad miembros clan 2: ");
-                    int miembros2 = teclado.nextInt();
-                    teclado.nextLine();
-
-                    grafo.registrarClanSiNoExiste(
+                        grafo.registrarClanSiNoExiste(
                             nombre1,
                             lider1,
                             miembros1);
+                        System.out.println("Clan agregado correctamente");
 
-                    grafo.registrarClanSiNoExiste(
-                            nombre2,
-                            lider2,
-                            miembros2);
+                    }else{
+                        System.out.println("Elija un clan de los disponibles:");
 
-                    grafo.agregarAlianza(
-                            nombre1,
-                            nombre2);
+                        for(String c : grafo.clanes.keySet()){
+                            System.out.println(c);
+                        }
 
-                    System.out.println("Alianza registrada");
+                        //¡¡¡¡¡¡¡¡IMPORTANTE!!!!!!!! Desde aca para abajo creo que da problemas, hay que hacer que concreten alianza los clanes
 
+                        System.out.println("Agrege el nombre del clan para aliarse:");
+                        String nombre2 = teclado.nextLine();
+                        teclado.nextLine();
+
+                        grafo.agregarAlianza(
+                                nombre1,
+                                nombre2);
+
+                        System.out.println("Alianza registrada");
+                    }
                     break;
 
                 case 2:
